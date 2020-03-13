@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="sign-in">
+          <form action="" method="POST">
+              {%csrf_token%}
+            <div class="form-header">
+            </div>
+            <div class="form-content">
+              <div class="triangle-down"></div>
+              <h4>Sign in</h4>
+              <div class="input-group">
+                <input type="text" name="username" 
+                       autocomplete="off" required>
+                <label for="username">Username</label>
+              </div>
+              <div class="input-group">
+                <input type="password" name="password" 
+                       autocomplete="off" required>
+                <label for="password">Password</label>
+              </div>
+              <div class="input-action">
+                <input type="submit">
+                <a href="{% url 'user-forget-password' %}">Forgot password?</a>
+              </div>
+            </div>
+            <div class="form-footer">
+              <p>Haven't got an account? 
+                <a id="test" class="test" href="{%url 'user-signup'%}">Sign up</a> 
+              </p>
+            </div>
+          </form>
+         </div>
+</body>
+</html>
