@@ -17,14 +17,16 @@
              <div class="form-content">
               <div class="triangle-down"></div>
               <h4>Sign up</h4>
+              {% if user %}
+              {%endif%}
                <div class="input-group">
                  <input type="text" name="username" 
-                        autocomplete="off" required>
+                        autocomplete="off" required value="{{user.username}}">
                  <label for="username">Username</label>
                </div>
                <div class="input-group">
                  <input type="email" name="email" 
-                        autocomplete="off" required>
+                        autocomplete="off" required value="{{user.email}}" >
                  <label for="email">Email Address</label>
                </div>
                <div class="input-group">

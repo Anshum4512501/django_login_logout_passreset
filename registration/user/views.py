@@ -5,7 +5,7 @@ from django.core.exceptions import ObjectDoesNotExist
 # Create your views here.
 
 
-def signup(request):
+def signup(request,id=None):
     if request.method == 'POST':
         username=request.POST['username']
         email=request.POST['email']
@@ -18,9 +18,16 @@ def signup(request):
         print("User from sign up ",user)
         return redirect('../signin')
 
-    else:    
-        return render(request,'register/signup.html')
+    else:
+        try:
+            print("Inside try",id)
+            user = M_User.objects.get(id=id)
+            print("Inside try",id,user)
+            return render(request,'register/signup.html',{"user":user})
 
+        except:
+            ObjectDoesNotExist
+            return render(request,'register/signup.html')
 def signin(request):
     if request.method=='GET':
         return render(request,'register/signin.html')
@@ -51,3 +58,6 @@ def signinsuccess(request):
     return render(request,'register/signinsuccess.html',context)            
 def forgetpassword(request):
     return render(request,'register/forgetpassword.html')
+
+def emailsuccess(request):
+    return render(request,'register/emailsucces.html')
