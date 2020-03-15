@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import User as M_User
+from .models import User as M_User,Ticket
 from django.core.exceptions import ObjectDoesNotExist
 # from django.contrib.auth.models import User as DB_User
 # Create your views here.
@@ -61,3 +61,29 @@ def forgetpassword(request):
 
 def emailsuccess(request):
     return render(request,'register/emailsucces.html')
+
+def taskinfo(request):
+    return render(request,'register/department.html',{"department":""})
+def ticketraising(request):
+    if request.method=='POST':
+        ticketnumber= request.POST['ticketnumber']
+        date= request.POST['issue_creation_date']
+        issue = request.POST['issue']
+        issuedepatment= request.POST['issue_department']
+        
+        ticket = Ticket(ticketNumber=ticketnumber,issue_department=issuedepatment,issue=issue,issue_creation_date=date,is_this_new_ticket='y')
+        print("Ticket is",ticket)
+        ticket.save()
+        return redirect('../raiseticket')
+    else:
+        return render(request,'register/raiseticket.html')    
+
+def assignticket(request):
+    ticket =Ticket.objects.all()
+    totaltickets=Ticket.objects.count()
+    print("Total tickets are ",totaltickets)
+    context = {
+        "tickets":ticket,
+        "totaltickets":totaltickets
+    }
+    return render(request,'register/assignticket.html',context)        

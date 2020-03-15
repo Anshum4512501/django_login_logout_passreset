@@ -13,4 +13,20 @@ class User(models.Model):
     #     self.password=password
     #     self.email=email
 class Post(models.Model):
-    postname=models.CharField(max_length=100)    
+    postname=models.CharField(max_length=100)  
+
+class Department(models.Model):
+    name=models.CharField(max_length=100)
+class DepartmentRoles(models.Model):
+    departmentId=models.ForeignKey(Department,on_delete=models.CASCADE)
+    admin=models.CharField(max_length=100)    
+    user=models.CharField(max_length=100)    
+    manager=models.CharField(max_length=100)
+
+class Ticket(models.Model):
+    ticketNumber=models.CharField(primary_key=True,max_length=100)
+    issue_department=models.CharField(max_length=100)
+    issue=models.TextField() 
+    issue_creation_date=models.TextField(max_length=100)
+    is_this_new_ticket=models.CharField(max_length=100)
+

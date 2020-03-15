@@ -1,0 +1,15 @@
+{% extends 'register/base.html'%}
+{% load static %}
+{% block content %}
+<form action="" method="post">
+<div class="form-group container-fluid">
+    {% if department %}
+    <select class="form-control" id="sel2">
+    <option value="{{department}}" ></option>
+     </select>
+    {% else %}
+    <input type="text" name="department" class="form-control" id="department">
+     {% endif %}
+     <div id="grid"></div>
+     
+{% endblock content %}

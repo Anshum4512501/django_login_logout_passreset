@@ -1,0 +1,56 @@
+{% extends 'register/base.html' %}
+{% block content %}
+<div class="container">
+  <h1 class="bg-dark text-white px-2" >Raise ticket From Here</h1>
+  {{message}}
+  {% if message  %}
+  <div class="alert alert-success">
+    {{message}}
+  </div>
+  {% endif %}
+<form action="" method="POST">
+  {% csrf_token %} 
+    <div class="form-group">
+      <label for="exampleInputEmail1">Ticket Number</label>
+      <input type="text" name="ticketnumber" class="form-control" id="ticketNumber"  readonly>
+      
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Issue Department</label>
+      <input type="text" name="issue_department"  class="form-control" id="issue_department">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Issue</label>
+        <input type="text" name="issue"  class="form-control" id="issue">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Date</label>
+        <input type="text" name="issue_creation_date"  class="form-control" id="issue_creation_date" readonly>
+      </div>
+      <div class="form-group">
+        <label for="">User name</label>
+        <input type="text" name="username" id="username" class="form-control">
+      </div>
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" id="newticket" name="isnewticket">
+      <label class="form-check-label" for="exampleCheck1" >New Ticket</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+ 
+  
+<script>
+    let date = new Date();
+    document.getElementById('issue_creation_date').value=date.getDate().toString()+"-"+(date.getMonth()+1).toString()+"-"+date.getFullYear().toString()+":"+date.getHours().toString()+"-"+date.getMinutes().toString();
+    let ticketNumber= "Ticket-"+(Math.floor(Math.random() * 100000) + 1).toString();
+    document.getElementById('ticketNumber').value=ticketNumber; 
+    document.getElementById('newticket').value=true;
+    document.getElementById('newticket').addEventListener("click",function(){
+      console.log(this);
+    })
+    document.getElementById('newticket').disbled=true;
+    console.log(document.getElementById('issue_creation_date'));
+    console.log(document.getElementById('newticket'));
+  </script>
+{% endblock content %}

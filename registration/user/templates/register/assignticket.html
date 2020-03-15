@@ -1,0 +1,56 @@
+{% extends 'register/base.html' %}
+{% block content %}
+<div class="container ">
+    <div class="bg-dark px-2 py-2">
+        
+        
+                
+        <button type="button" class="btn btn-primary">
+        Notifications <span class="badge badge-light">{{totaltickets}}</span>
+      </button></div>
+    
+    <form action="" method="">
+        
+          <div class="form-group">
+            <label for="exampleInputEmail1">Ticket Number</label>
+            <input type="text" name="ticketnumber" class="form-control" id="ticketNumber"  readonly>
+            
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Issue Department</label>
+            <input type="text" name="issue_department"  class="form-control" id="issue_department">
+          </div>
+          <div class="form-group">
+              <label for="exampleInputPassword1">Issue</label>
+              <input type="text" name="issue"  class="form-control" id="issue">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Date</label>
+              <input type="text" name="issue_creation_date"  class="form-control" id="issue_creation_date" readonly>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Assign to</label>
+              <select name="" id="" class="form-control" >Please select a value
+                {%for ticket in tickets%}
+                <option value="{{ticket.ticketNumber}}">{{ticket.ticketNumber}}</option>
+                {% endfor %}
+              </select>
+            </div>
+            
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+      {% for ticket in tickets %}
+      <div class="modal-body">
+        <h5>Ticket Info</h5>
+        <hr>
+        <h5>Tooltips in a modal</h5>
+        <p><a href="#" class="tooltip-test" title="Tooltip">{{ticket.ticketNumber}}</a> and <a href="#" class="tooltip-test" title="Tooltip">that link</a> have tooltips on hover.</p>
+      </div>
+      {% endfor %}
+<script>
+  $('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').trigger('focus')
+  })
+</script> 
+{% endblock content %}
